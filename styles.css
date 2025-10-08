@@ -713,3 +713,19 @@ body::before {
 .back-link:hover {
   text-decoration: underline;
 }
+
+.cinder-image {
+    object-fit: contain !important;
+    height: auto;
+    max-height: 400px;
+    background-color: var(--bg-secondary);
+}
+
+.cinder-post-image {
+  width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 15px 0;
+    max-height: 400px;
+}

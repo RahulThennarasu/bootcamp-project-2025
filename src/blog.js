@@ -50,6 +50,10 @@ function renderBlogs() {
         image.src = blog.image;
         image.alt = blog.imageAlt;
         image.className = 'post-image';
+        // Add special class for cinder image
+        if (blog.slug === 'cinder-ml-platform') {
+            image.classList.add('cinder-image');
+        }
         blogPost.appendChild(image);
         // Create and append description
         var description = document.createElement('p');
