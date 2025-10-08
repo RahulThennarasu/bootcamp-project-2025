@@ -675,3 +675,41 @@ body::before {
     linear-gradient(-45deg, transparent 49%, rgba(255, 85, 0, 0.04) 50%, transparent 51%);
   background-size: 120px 120px, 90px 90px;
 }
+
+/* Individual blog article styles */
+.blog-article {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-content {
+  line-height: 1.8;
+  margin-top: 2rem;
+}
+
+.post-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.post-content ul {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 3rem;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
