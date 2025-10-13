@@ -29,6 +29,14 @@ const blogs: Blog[] = [
         image: "snowflake-conference.JPG",
         imageAlt: "Snowflake Summit 2025 in San Francisco",
         slug: "snowflake-conference-2025"
+    },
+    {
+        title: "Canon PowerShot SD750",
+        date: "Oct 13, 2025",
+        description: "This is my 2007 Canon Digital Camera I found in my house, motivating me to pursue a hobby in photography",
+        image: "sd750.JPG",
+        imageAlt: "CANON PS SD750",
+        slug: "canon-digital-camera"
     }
 ];
 
