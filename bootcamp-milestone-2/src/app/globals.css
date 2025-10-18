@@ -410,3 +410,63 @@ main {
   color: var(--accent-blue);
   font-weight: 600;
 }
+
+/* Contact Form Styles */
+#contact-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: var(--shadow);
+}
+
+label {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 15px;
+}
+
+input,
+textarea {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 1.25rem;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 3px rgba(35, 131, 226, 0.1);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background: var(--accent-blue);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background: #1a6ec7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(35, 131, 226, 0.3);
+}
