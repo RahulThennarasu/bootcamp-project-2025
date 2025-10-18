@@ -200,3 +200,68 @@ main {
   max-width: 800px;
   margin: 0 auto;
 }
+
+/* Portfolio Styles */
+.project {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 2rem 0;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.project:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-blue);
+}
+
+.project img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project img:hover {
+  transform: scale(1.02);
+}
+
+.project-details {
+  padding: 2rem;
+}
+
+.project-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.project-details a {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-blue);
+  color: white;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.project-details a:hover {
+  background: #1a6ec7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(35, 131, 226, 0.3);
+}
