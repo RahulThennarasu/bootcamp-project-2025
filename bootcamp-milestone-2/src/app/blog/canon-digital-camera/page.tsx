@@ -10,13 +10,15 @@ export default function CanonBlog() {
           
           <p className="post-date">Oct 13, 2025</p>
           
-          <Image 
-            src="/images/sd750.JPG" 
-            alt="Canon PowerShot SD750" 
-            width={600}
-            height={400}
-            className="camera-img"
-          />
+          <div style={{ position: 'relative', width: '100%', maxWidth: '600px', height: '400px', margin: '20px auto' }}>
+            <Image 
+              src="/images/sd750.JPG" 
+              alt="Canon PowerShot SD750" 
+              fill
+              style={{ objectFit: 'contain' }}
+              className="camera-img"
+            />
+          </div>
           
           <div className="post-content">
             <p>
@@ -33,10 +35,18 @@ export default function CanonBlog() {
           </div>
           
           <div className="gallery">
-            <Image src="/images/mountain_landscape.JPG" alt="Mountain landscape" width={400} height={300} />
-            <Image src="/images/cabo_arc.JPG" alt="Cabo arch" width={400} height={300} />
-            <Image src="/images/sfbridge.JPG" alt="SF Bridge" width={400} height={300} />
-            <Image src="/images/palm_trees.JPG" alt="Palm trees" width={400} height={300} />
+            <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+              <Image src="/images/mountain_landscape.JPG" alt="Mountain landscape" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+              <Image src="/images/cabo_arc.JPG" alt="Cabo arch" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+              <Image src="/images/sfbridge.JPG" alt="SF Bridge" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+              <Image src="/images/palm_trees.JPG" alt="Palm trees" fill style={{ objectFit: 'cover' }} />
+            </div>
           </div>
           
           <Link href="/blog" className="back-link">← Back to Blog</Link>
