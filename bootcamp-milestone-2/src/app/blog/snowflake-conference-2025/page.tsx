@@ -10,13 +10,15 @@ export default function SnowflakeBlog() {
           
           <p className="post-date">Sept 27, 2025</p>
           
-          <Image 
-            src="/images/snowflake-conference.JPG" 
-            alt="Snowflake Summit 2025 in San Francisco" 
-            width={800}
-            height={400}
-            className="post-image"
-          />
+          <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+            <Image 
+              src="/images/snowflake-conference.JPG" 
+              alt="Snowflake Summit 2025 in San Francisco" 
+              fill
+              style={{ objectFit: 'contain' }}
+              className="post-image"
+            />
+          </div>
           
           <div className="post-content">
             <p>

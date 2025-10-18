@@ -551,3 +551,8 @@ input[type="submit"]:hover {
 .gallery img:hover {
   transform: scale(1.02);
 }
+
+.gallery > div {
+  border-radius: 8px;
+  overflow: hidden;
+}

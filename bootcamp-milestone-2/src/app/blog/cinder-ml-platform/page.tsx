@@ -10,13 +10,15 @@ export default function CinderBlog() {
           
           <p className="post-date">Coming Soon</p>
           
-          <Image 
-            src="/images/cinder-screenshot.png" 
-            alt="Screenshot of Cinder ML Analysis Platform" 
-            width={800}
-            height={400}
-            className="post-image"
-          />
+          <div style={{ position: 'relative', width: '100%', height: '400px' }}>
+            <Image 
+              src="/images/cinder-screenshot.png" 
+              alt="Screenshot of Cinder ML Analysis Platform" 
+              fill
+              style={{ objectFit: 'contain' }}
+              className="post-image"
+            />
+          </div>
           
           <div className="post-content">
             <p>
