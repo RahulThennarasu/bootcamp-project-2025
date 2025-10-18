@@ -11,7 +11,7 @@ export default function BlogPage() {
         </p>
         <div className="blog-container">
           {blogs.map((blog, index) => (
-            <BlogPreview key={index} {...blog} />
+            <BlogPreview key={blog.slug} {...blog} />
           ))}
         </div>
       </main>
