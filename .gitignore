@@ -1,1 +1,7 @@
 /node_modules
+/bootcamp-milestone-1
+/.next
+/out
+*.log
+.DS_Store
+.env*.local
