@@ -53,7 +53,6 @@ export default function CinderBlog() {
           <Link href="/blog" className="back-link">← Back to Blog</Link>
         </article>
       </main>
-      <footer className="footer">© 2025 Rahul Thennarasu's Personal Website | All Rights Reserved | Made with love ♥</footer>
     </div>
   );
 }

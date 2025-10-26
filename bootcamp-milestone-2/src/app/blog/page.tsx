@@ -15,7 +15,6 @@ export default function BlogPage() {
           ))}
         </div>
       </main>
-      <footer className="footer">© 2025 Rahul Thennarasu's Personal Website | All Rights Reserved | Made with love ♥</footer>
     </div>
   );
 }
