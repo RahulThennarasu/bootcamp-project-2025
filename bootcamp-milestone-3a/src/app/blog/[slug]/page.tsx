@@ -8,6 +8,26 @@ type Props = {
   params: { slug: string };
 };
 
+// Simple function to convert markdown-style headings to HTML
+function parseContent(content: string) {
+  return content.split('\n\n').map((paragraph: string, index: number) => {
+    const trimmed = paragraph.trim();
+    
+    // Check if it's an H2 heading (##)
+    if (trimmed.startsWith('## ')) {
+      const text = trimmed.replace('## ', '');
+      return <h2 key={index}>{text}</h2>;
+    }
+    // Check if it's an H3 heading (###)
+    if (trimmed.startsWith('### ')) {
+      const text = trimmed.replace('### ', '');
+      return <h3 key={index}>{text}</h3>;
+    }
+    // Regular paragraph
+    return <p key={index}>{trimmed}</p>;
+  });
+}
+
 async function getBlog(slug: string) {
   await connectDB();
 
@@ -53,10 +73,8 @@ export default async function BlogPost({ params }: Props) {
           <div className="post-content">
             <p>{blog.description}</p>
             
-            {/* Render the full content - split by newlines and create paragraphs */}
-            {blog.content.split('\n\n').map((paragraph: string, index: number) => (
-                <p key={index}>{paragraph}</p>
-            ))}
+            {/* Parse and render content with markdown headings */}
+            {parseContent(blog.content)}
           </div>
           
           <Link href="/blog" className="back-link">← Back to Blog</Link>
