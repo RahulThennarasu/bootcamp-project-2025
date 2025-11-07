@@ -1,7 +1,7 @@
 /node_modules
 /bootcamp-milestone-1
 /bootcamp-milestone-2
-/.next
+.next
 /out
 *.log
 .DS_Store
