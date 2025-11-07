@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/blog/cinder-ml-platform/page": "app/blog/cinder-ml-platform/page.js",
-  "/resume/page": "app/resume/page.js",
-  "/portfolio/page": "app/portfolio/page.js"
-}
