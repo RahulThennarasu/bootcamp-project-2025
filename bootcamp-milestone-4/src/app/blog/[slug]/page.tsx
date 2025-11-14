@@ -1,49 +1,118 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import connectDB from "@/database/db";
-import Blog from "@/database/blogSchema";
-import type { IBlog } from "@/database/blogSchema";
+import type { IComment } from "@/database/blogSchema";
 import Comment from "@/components/comment";
-import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 
-type Props = {
-  params: { slug: string };
+type BlogData = {
+  title: string;
+  slug: string;
+  date: string;
+  description: string;
+  content: string;
+  image: string;
+  image_alt: string;
+  comments: IComment[];
 };
-
-async function getBlog(slug: string) {
-  await connectDB();
-
-  try {
-    const blog = await Blog.findOne({ slug }).orFail();
-    return blog;
-  } catch (err) {
-    return null;
-  }
-}
 
 // Simple function to convert markdown-style headings to HTML
 function parseContent(content: string) {
   return content.split('\n\n').map((paragraph: string, index: number) => {
-    // Check if it's an H2 heading (##)
     if (paragraph.startsWith('## ')) {
       const text = paragraph.replace('## ', '');
       return <h2 key={index}>{text}</h2>;
     }
-    // Check if it's an H3 heading (###)
     if (paragraph.startsWith('### ')) {
       const text = paragraph.replace('### ', '');
       return <h3 key={index}>{text}</h3>;
     }
-    // Regular paragraph
     return <p key={index}>{paragraph}</p>;
   });
 }
 
-export default async function BlogPost({ params }: Props) {
-  const blog: IBlog | null = await getBlog(params.slug);
+export default function BlogPost() {
+  const params = useParams();
+  const slug = params.slug as string;
+  
+  const [blog, setBlog] = useState<BlogData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [commentForm, setCommentForm] = useState({ user: "", comment: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  // Fetch blog data
+  useEffect(() => {
+    async function fetchBlog() {
+      try {
+        const response = await fetch(`/api/blogs/${slug}`);
+        if (!response.ok) {
+          throw new Error("Blog not found");
+        }
+        const data = await response.json();
+        setBlog(data);
+      } catch (err) {
+        console.error("Error fetching blog:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchBlog();
+  }, [slug]);
+
+  // Handle comment submission
+  const handleSubmitComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await fetch(`/api/blogs/${slug}/comment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentForm),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add comment");
+      }
+
+      const data = await response.json();
+      
+      // Add the new comment to the blog state
+      if (blog) {
+        setBlog({
+          ...blog,
+          comments: [...blog.comments, data.comment],
+        });
+      }
+
+      // Reset form and show success message
+      setCommentForm({ user: "", comment: "" });
+      setSuccess("Comment added successfully!");
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError("Failed to add comment. Please try again.");
+      console.error("Error adding comment:", err);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!blog) {
-    notFound();
+    return <div>Blog not found</div>;
   }
 
   return (
@@ -72,14 +141,50 @@ export default async function BlogPost({ params }: Props) {
           
           <div className="post-content">
             <p>{blog.description}</p>
-            
-            {/* Parse and render content with markdown headings */}
             {parseContent(blog.content)}
           </div>
 
           {/* Comments Section */}
           <div className="comments-section">
             <h2>Comments ({blog.comments?.length || 0})</h2>
+            
+            {/* Comment Form */}
+            <form onSubmit={handleSubmitComment} style={{ marginBottom: '2rem' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <label htmlFor="user">Name:</label>
+                <input
+                  type="text"
+                  id="user"
+                  value={commentForm.user}
+                  onChange={(e) => setCommentForm({ ...commentForm, user: e.target.value })}
+                  required
+                  disabled={submitting}
+                  style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                />
+              </div>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <label htmlFor="comment">Comment:</label>
+                <textarea
+                  id="comment"
+                  value={commentForm.comment}
+                  onChange={(e) => setCommentForm({ ...commentForm, comment: e.target.value })}
+                  required
+                  disabled={submitting}
+                  rows={4}
+                  style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                />
+              </div>
+              
+              <button type="submit" disabled={submitting}>
+                {submitting ? "Submitting..." : "Add Comment"}
+              </button>
+              
+              {error && <p style={{ color: 'red', marginTop: '0.5rem' }}>{error}</p>}
+              {success && <p style={{ color: 'green', marginTop: '0.5rem' }}>{success}</p>}
+            </form>
+
+            {/* Display Comments */}
             {!blog.comments || blog.comments.length === 0 ? (
               <p>No comments yet. Be the first to comment!</p>
             ) : (
