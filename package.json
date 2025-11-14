@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/RahulThennarasu/bootcamp-project-2025#readme",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "typescript": "^5.9.3"
   }
 }
