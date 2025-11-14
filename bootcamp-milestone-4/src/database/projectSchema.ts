@@ -1,0 +1,28 @@
+import mongoose, { Schema } from "mongoose";
+
+// TypeScript type for a project
+type Project = {
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  image_alt: string;
+  link?: string; // Optional link to live project or GitHub
+  technologies: string[]; // Array of technologies used
+};
+
+// Mongoose schema
+const projectSchema = new Schema<Project>({
+  title: { type: String, required: true },
+  slug: { type: String, required: true },
+  description: { type: String, required: true },
+  image: { type: String, required: true },
+  image_alt: { type: String, required: true },
+  link: { type: String, required: false },
+  technologies: { type: [String], required: true },
+});
+
+// Defining the collection and model
+const Project = mongoose.models['projects'] || mongoose.model('projects', projectSchema);
+
+export default Project;
