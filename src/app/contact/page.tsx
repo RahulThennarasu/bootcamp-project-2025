@@ -102,7 +102,7 @@ export default function Contact() {
 
           {status === "success" && (
             <p style={{ color: "green", marginTop: "1rem" }}>
-              Message sent successfully! I'll get back to you soon.
+              Message sent successfully! I&apos;ll get back to you soon.
             </p>
           )}
 

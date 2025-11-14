@@ -16,7 +16,7 @@ export default function Home() {
           </div>
           <div className="about-text">
             <p>
-              Welcome! I'm <strong>Rahul Thennarasu</strong>, a first-year <em>Computer Science</em> student at <strong>Cal Poly SLO</strong> 
+              Welcome! I&apos;m <strong>Rahul Thennarasu</strong>, a first-year <em>Computer Science</em> student at <strong>Cal Poly SLO</strong> 
               with a passion for AI technology.
             </p>
             <p>
@@ -24,7 +24,7 @@ export default function Home() {
               to build projects that are fun, helpful, and innovative.
             </p>
             <p>
-              When I'm not coding, you'll probably find me playing one of my 
+              When I&apos;m not coding, you&apos;ll probably find me playing one of my 
               guitars (my current favorite is <em>classical</em>), exploring indie games, or going on walks with my dog to relax and recharge.
             </p>
             <p>
