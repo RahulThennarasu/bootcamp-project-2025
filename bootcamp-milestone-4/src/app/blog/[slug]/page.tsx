@@ -149,9 +149,23 @@ export default function BlogPost() {
             <h2>Comments ({blog.comments?.length || 0})</h2>
             
             {/* Comment Form */}
-            <form onSubmit={handleSubmitComment} style={{ marginBottom: '2rem' }}>
+            <form onSubmit={handleSubmitComment} style={{ 
+              marginBottom: '2rem',
+              padding: '1.5rem',
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              backgroundColor: '#f9f9f9'
+            }}>
+              <h3 style={{ marginTop: 0, marginBottom: '1rem' }}>Leave a Comment</h3>
+              
               <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="user">Name:</label>
+                <label htmlFor="user" style={{ 
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  fontWeight: '500'
+                }}>
+                  Name:
+                </label>
                 <input
                   type="text"
                   id="user"
@@ -159,12 +173,25 @@ export default function BlogPost() {
                   onChange={(e) => setCommentForm({ ...commentForm, user: e.target.value })}
                   required
                   disabled={submitting}
-                  style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                  style={{ 
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    fontSize: '1rem',
+                    boxSizing: 'border-box'
+                  }}
                 />
               </div>
               
               <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="comment">Comment:</label>
+                <label htmlFor="comment" style={{ 
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  fontWeight: '500'
+                }}>
+                  Comment:
+                </label>
                 <textarea
                   id="comment"
                   value={commentForm.comment}
@@ -172,16 +199,67 @@ export default function BlogPost() {
                   required
                   disabled={submitting}
                   rows={4}
-                  style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+                  style={{ 
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    fontSize: '1rem',
+                    fontFamily: 'inherit',
+                    resize: 'vertical',
+                    boxSizing: 'border-box'
+                  }}
                 />
               </div>
               
-              <button type="submit" disabled={submitting}>
+              <button 
+                type="submit" 
+                disabled={submitting}
+                style={{
+                  padding: '0.75rem 2rem',
+                  backgroundColor: submitting ? '#ccc' : '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={(e) => {
+                  if (!submitting) e.currentTarget.style.backgroundColor = '#0056b3';
+                }}
+                onMouseOut={(e) => {
+                  if (!submitting) e.currentTarget.style.backgroundColor = '#007bff';
+                }}
+              >
                 {submitting ? "Submitting..." : "Add Comment"}
               </button>
               
-              {error && <p style={{ color: 'red', marginTop: '0.5rem' }}>{error}</p>}
-              {success && <p style={{ color: 'green', marginTop: '0.5rem' }}>{success}</p>}
+              {error && (
+                <p style={{ 
+                  color: '#dc3545',
+                  marginTop: '1rem',
+                  padding: '0.75rem',
+                  backgroundColor: '#f8d7da',
+                  border: '1px solid #f5c6cb',
+                  borderRadius: '4px'
+                }}>
+                  {error}
+                </p>
+              )}
+              {success && (
+                <p style={{ 
+                  color: '#155724',
+                  marginTop: '1rem',
+                  padding: '0.75rem',
+                  backgroundColor: '#d4edda',
+                  border: '1px solid #c3e6cb',
+                  borderRadius: '4px'
+                }}>
+                  {success}
+                </p>
+              )}
             </form>
 
             {/* Display Comments */}
